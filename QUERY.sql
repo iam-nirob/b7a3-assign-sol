@@ -82,3 +82,5 @@ from
   users as u
   left join bookings b on u.user_id = b.user_id
   left join matches as m on m.match_id = b.match_id;
+
+select booking_id, match_id, total_cost from bookings where total_cost > (select avg(total_cost) from bookings);

@@ -63,3 +63,13 @@ select fixture, base_ticket_price from matches where tournament_category = 'Cham
 select full_name, email from users where full_name ilike ('Tanvir%') or full_name ilike ('%Haque%');
 
 select user_id, match_id, coalesce(payment_status, 'Action Required') as systematic_status from bookings;
+
+select
+  b.booking_id,
+  u.full_name,
+  m.fixture,
+  b.total_cost
+from
+  users as u
+  inner join bookings b on u.user_id = b.user_id
+  inner join matches as m on m.match_id = b.match_id;

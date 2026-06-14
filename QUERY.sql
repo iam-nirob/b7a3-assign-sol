@@ -73,3 +73,12 @@ from
   users as u
   inner join bookings b on u.user_id = b.user_id
   inner join matches as m on m.match_id = b.match_id;
+
+select
+  u.user_id,
+  u.full_name,
+  b.booking_id
+from
+  users as u
+  left join bookings b on u.user_id = b.user_id
+  left join matches as m on m.match_id = b.match_id;

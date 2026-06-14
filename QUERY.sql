@@ -23,3 +23,17 @@ CREATE TABLE Matches (
     constraint chk_ticket_price check (base_ticket_price >= 0),
     constraint chk_match_status check (match_status in ('Available', 'Sold Out'))
 );
+
+CREATE TABLE Bookings (
+    booking_id serial,
+    user_id int,
+    match_id int,
+    seat_number varchar(10) null,
+    payment_status varchar(15) null,
+    total_cost int not null,
+    constraint pk_booking_id primary key (booking_id),
+    constraint fk_user_id foreign key (user_id) references users (user_id),
+    constraint fk_match_id foreign key (match_id) references matches (match_id),
+    constraint chk_total_cost check (total_cost >= 0),
+    constraint chk_payment_status check (payment_status in ('Confirmed', 'Pending'))
+);

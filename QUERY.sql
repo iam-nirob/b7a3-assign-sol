@@ -12,3 +12,14 @@ CREATE TABLE Users (
     constraint unique_user_email unique (email),
     constraint ck_role check (role in ('Football Fan', 'Ticket Manager'))
 );
+
+CREATE TABLE Matches (
+    match_id serial,
+    fixture varchar(100) not null,
+    tournament_category varchar(100) not null,
+    base_ticket_price int not null,
+    match_status varchar(20) not null,
+    constraint pk_match_id primary key (match_id),
+    constraint chk_ticket_price check (base_ticket_price >= 0),
+    constraint chk_match_status check (match_status in ('Available', 'Sold Out'))
+);
